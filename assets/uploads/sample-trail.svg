@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Backlit trail through trees">
+  <defs>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf3df"/>
+      <stop offset="1" stop-color="#dfe9d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#haze)"/>
+  <circle cx="600" cy="300" r="90" fill="#fff7e0" opacity="0.85"/>
+  <g fill="#5f7355" opacity="0.85">
+    <rect x="180" y="120" width="34" height="560"/>
+    <rect x="330" y="90" width="40" height="600"/>
+    <rect x="840" y="100" width="38" height="590"/>
+    <rect x="1000" y="140" width="30" height="540"/>
+  </g>
+  <path d="M540 800 L640 800 L600 320 Z" fill="#d8c79a" opacity="0.8"/>
+  <path d="M0 700 Q600 660 1200 700 V800 H0 Z" fill="#6b7a58"/>
+</svg>

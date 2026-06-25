@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Minimal composition with strong lines">
+  <rect width="1200" height="800" fill="#eef2f5"/>
+  <rect x="0" y="520" width="1200" height="280" fill="#dfe6ea"/>
+  <line x1="0" y1="520" x2="1200" y2="520" stroke="#b9c5cc" stroke-width="3"/>
+  <circle cx="800" cy="300" r="70" fill="#ff8a5b"/>
+  <line x1="0" y1="800" x2="800" y2="370" stroke="#c2ccd2" stroke-width="6"/>
+  <line x1="1200" y1="800" x2="800" y2="370" stroke="#c2ccd2" stroke-width="6"/>
+</svg>

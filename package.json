@@ -1,0 +1,12 @@
+{
+  "name": "aperture-diary",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aperture Diary — a free, self-hosted photography blog built on GitHub Pages.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/build.mjs && node scripts/serve.mjs"
+  },
+  "license": "MIT"
+}

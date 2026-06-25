@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Golden sunrise over a field">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe7b3"/>
+      <stop offset="0.55" stop-color="#ffc36e"/>
+      <stop offset="1" stop-color="#f59e5b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="600" cy="430" r="120" fill="#fff4d6" opacity="0.9"/>
+  <circle cx="600" cy="430" r="170" fill="#fff4d6" opacity="0.35"/>
+  <path d="M0 560 Q300 520 600 555 T1200 560 V800 H0 Z" fill="#caa15f" opacity="0.85"/>
+  <path d="M0 620 Q300 590 600 615 T1200 620 V800 H0 Z" fill="#a8823f"/>
+  <path d="M0 700 Q300 680 600 700 T1200 700 V800 H0 Z" fill="#7c5e2a"/>
+</svg>

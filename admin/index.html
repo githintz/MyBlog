@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Studio · Aperture Diary</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===================== LOGIN ===================== -->
+<section id="view-login" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#fff" stroke="#ff7a4d" stroke-width="2.5"/><circle cx="24" cy="24" r="11" fill="#fff0e9" stroke="#e85f33" stroke-width="2"/><circle cx="24" cy="24" r="4.5" fill="#ff7a4d"/><path d="M24 5 L29 13 H19 Z" fill="#ff7a4d"/><path d="M43 24 L35 29 V19 Z" fill="#ffb38f"/><path d="M24 43 L19 35 H29 Z" fill="#ffb38f"/><path d="M5 24 L13 19 V29 Z" fill="#ffb38f"/></svg>
+    </div>
+    <h1>Aperture Studio</h1>
+    <p class="muted">Private author area. Sign in with a GitHub access token that has write access to your blog repository.</p>
+    <form id="login-form">
+      <label for="token">GitHub access token</label>
+      <input id="token" type="password" autocomplete="off" placeholder="github_pat_…" spellcheck="false" required>
+      <label class="remember"><input type="checkbox" id="remember" checked> Keep me signed in on this device</label>
+      <button class="btn primary full" type="submit"><span class="btn-label">Sign in</span></button>
+      <p id="login-error" class="error" hidden></p>
+    </form>
+    <details class="help">
+      <summary>How do I get a token?</summary>
+      <ol>
+        <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens</a>.</li>
+        <li>Set <b>Repository access → Only select repositories</b> and choose your blog repo.</li>
+        <li>Under <b>Permissions → Repository → Contents</b>, set <b>Read and write</b>.</li>
+        <li>Generate, copy the token, and paste it above. It is stored only in this browser.</li>
+      </ol>
+    </details>
+  </div>
+  <p class="login-foot">← <a href="../">Back to the blog</a></p>
+</section>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app" hidden>
+  <aside class="sidebar">
+    <a class="side-brand" href="../">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#fff" stroke="#ff7a4d" stroke-width="2.5"/><circle cx="24" cy="24" r="11" fill="#fff0e9" stroke="#e85f33" stroke-width="2"/><circle cx="24" cy="24" r="4.5" fill="#ff7a4d"/></svg>
+      <span>Aperture<br>Studio</span>
+    </a>
+    <nav class="side-nav">
+      <button data-nav="dashboard" class="active"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3zM13 21h8V11h-8zM13 3v6h8V3zM3 21h8v-6H3z"/></svg> Dashboard</button>
+      <button data-nav="posts"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg> Posts</button>
+      <button data-nav="editor"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> New post</button>
+    </nav>
+    <div class="side-foot">
+      <div class="who"><span id="who-avatar" class="avatar"></span><span id="who-name" class="muted small"></span></div>
+      <button id="signout" class="btn ghost small full">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <!-- DASHBOARD -->
+    <section data-view="dashboard" class="view">
+      <header class="view-head">
+        <div><h1>Dashboard</h1><p class="muted">Your blog at a glance.</p></div>
+        <a class="btn ghost" href="../" target="_blank">View site ↗</a>
+      </header>
+      <div class="stat-grid">
+        <div class="stat"><span class="stat-num" id="s-posts">—</span><span class="stat-label">Published posts</span></div>
+        <div class="stat"><span class="stat-num" id="s-views">—</span><span class="stat-label">Pageviews (30d)</span></div>
+        <div class="stat"><span class="stat-num" id="s-visitors">—</span><span class="stat-label">Visitors (30d)</span></div>
+        <div class="stat"><span class="stat-num" id="s-tags">—</span><span class="stat-label">Topics</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Traffic</h2><span class="muted small" id="ga-status"></span></div>
+        <div id="ga-chart" class="chart"></div>
+        <div id="ga-setup" class="setup" hidden>
+          <p class="muted">Connect free, privacy-friendly analytics from <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> to see live traffic here.</p>
+          <div class="field-row">
+            <input id="gc-code" placeholder="your-goatcounter-code">
+            <input id="gc-token" type="password" placeholder="API token (optional, for charts)">
+            <button class="btn primary" id="gc-save">Connect</button>
+          </div>
+          <p class="muted small">Tip: also add your code to <code>content/site.json → analytics.goatcounterCode</code> so visits are tracked.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Top posts</h2></div>
+        <div id="top-posts" class="top-list muted small">Loading…</div>
+      </div>
+    </section>
+
+    <!-- POSTS LIST -->
+    <section data-view="posts" class="view" hidden>
+      <header class="view-head">
+        <div><h1>Posts</h1><p class="muted">Everything you have written.</p></div>
+        <button class="btn primary" data-nav="editor">+ New post</button>
+      </header>
+      <div id="posts-list" class="posts-list">Loading…</div>
+    </section>
+
+    <!-- EDITOR -->
+    <section data-view="editor" class="view editor-view" hidden>
+      <header class="view-head editor-head">
+        <div class="editor-title-wrap">
+          <button class="btn ghost small" id="ed-back">← Posts</button>
+          <span class="muted small" id="ed-status">Draft</span>
+        </div>
+        <div class="editor-actions">
+          <button class="btn ghost" id="ed-savedraft">Save draft</button>
+          <button class="btn primary" id="ed-publish">Publish</button>
+        </div>
+      </header>
+
+      <div class="editor-grid">
+        <div class="editor-main">
+          <input id="ed-cover-input" type="file" accept="image/*" hidden>
+          <div id="ed-cover" class="cover-drop">
+            <button type="button" class="cover-add" id="ed-cover-btn">
+              <svg viewBox="0 0 24 24"><path d="M4 16l5-5 4 4 3-3 4 4M4 5h16v14H4z"/></svg>
+              Add a cover photo
+            </button>
+          </div>
+          <input id="ed-title" class="ed-title" placeholder="Your story title…" maxlength="120">
+          <input id="ed-subtitle" class="ed-subtitle" placeholder="A short subtitle (optional)">
+
+          <!-- Floating block toolbar -->
+          <div id="ed-toolbar" class="ed-toolbar" hidden>
+            <button data-cmd="bold" title="Bold"><b>B</b></button>
+            <button data-cmd="italic" title="Italic"><i>i</i></button>
+            <button data-cmd="formatBlock" data-val="h2" title="Heading">H</button>
+            <button data-cmd="formatBlock" data-val="blockquote" title="Quote">❝</button>
+            <button data-cmd="insertUnorderedList" title="Bulleted list">•</button>
+            <button data-cmd="insertOrderedList" title="Numbered list">1.</button>
+            <button data-cmd="createLink" title="Link">🔗</button>
+          </div>
+
+          <div id="ed-body" class="ed-body" contenteditable="true" spellcheck="true"
+               data-placeholder="Tell your story… Drag photos straight onto the page — text will wrap around them. Click a photo to resize or move it."></div>
+
+          <div class="ed-insert-row">
+            <button class="btn ghost small" id="ed-add-img"><svg viewBox="0 0 24 24" style="width:16px;height:16px;vertical-align:-3px"><path d="M4 16l5-5 4 4 3-3 4 4M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="2"/></svg> Insert photo</button>
+            <span class="muted small">or drag &amp; drop images anywhere above</span>
+          </div>
+          <input id="ed-img-input" type="file" accept="image/*" multiple hidden>
+        </div>
+
+        <aside class="editor-side">
+          <div class="side-block">
+            <label>URL slug</label>
+            <input id="ed-slug" placeholder="auto-from-title">
+            <p class="muted small" id="ed-url-preview"></p>
+          </div>
+          <div class="side-block">
+            <label>Excerpt</label>
+            <textarea id="ed-excerpt" rows="3" placeholder="One or two sentences for previews & search results."></textarea>
+          </div>
+          <div class="side-block">
+            <label>Tags</label>
+            <input id="ed-tags" placeholder="light, composition, gear">
+            <p class="muted small">Comma separated.</p>
+          </div>
+          <div class="side-block">
+            <label>Publish date</label>
+            <input id="ed-date" type="date">
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Image control popover -->
+<div id="img-controls" class="img-controls" hidden>
+  <button data-act="left" title="Float left">⬅</button>
+  <button data-act="center" title="Center">⬍</button>
+  <button data-act="right" title="Float right">➡</button>
+  <button data-act="full" title="Full width">↔</button>
+  <span class="sep"></span>
+  <button data-act="smaller" title="Smaller">−</button>
+  <button data-act="bigger" title="Bigger">+</button>
+  <span class="sep"></span>
+  <button data-act="caption" title="Caption">⊕ caption</button>
+  <button data-act="delete" title="Delete" class="danger">🗑</button>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="github.js"></script>
+<script src="editor.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
