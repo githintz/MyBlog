@@ -29,7 +29,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(255, 122, 77, 0.18); }
 
 body {
   margin: 0;
@@ -229,15 +229,50 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.18
 /* ---------- Responsive ---------- */
 @media (max-width: 760px) {
   body { font-size: 17px; }
+  .nav { height: 60px; }
   .nav-links {
-    position: fixed; inset: 68px 0 auto 0; flex-direction: column; align-items: stretch;
+    position: fixed; inset: 60px 0 auto 0; flex-direction: column; align-items: stretch;
     background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 22px 22px;
     gap: 4px; transform: translateY(-130%); transition: transform 0.32s var(--ease); box-shadow: var(--shadow-md);
   }
   .nav-links.open { transform: none; }
-  .nav-links a { padding: 12px 4px; font-size: 1.05rem; }
+  .nav-links a { padding: 13px 4px; font-size: 1.05rem; }
+  .nav-links a::after { display: none; }
+  .nav-cta { text-align: center; margin-top: 6px; }
   .nav-toggle { display: inline-flex; }
-  .article-body .img-float-left, .article-body .img-float-right { float: none; width: 100% !important; margin: 1.4em 0; }
-  .post-nav a { max-width: 100%; }
-  .footer-inner { flex-direction: column; }
+
+  /* Hero: tighter spacing, blob kept clear of the heading */
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { margin-bottom: 14px; }
+  .hero p { font-size: 1.08rem; }
+  .hero-blob { width: 220px; height: 220px; right: -64px; top: -40px; opacity: 0.3; }
+  .hero .pill-row { flex-direction: column; align-items: stretch; }
+  .hero .pill-row .btn { width: 100%; justify-content: center; }
+
+  .section { padding: 40px 0; }
+  .section-head h2 { font-size: 1.55rem; }
+  .post-grid { gap: 20px; }
+
+  .article-hero { padding: 38px 0 8px; }
+  .article-hero h1 { max-width: none; }
+  .article-hero .subtitle { font-size: 1.12rem; }
+  .article-hero .meta { flex-wrap: wrap; gap: 8px; }
+  .article-cover { margin: 22px auto 8px; }
+  .article-body { font-size: 1.06rem; }
+  .article-body .img-float-left, .article-body .img-float-right,
+  .article-body figure.img-center { float: none; width: 100% !important; margin: 1.4em 0; }
+  .article-body blockquote { font-size: 1.18rem; }
+
+  .post-nav { flex-direction: column; gap: 14px; }
+  .post-nav a, .post-nav a.next { max-width: 100%; text-align: left; margin: 0; }
+  .footer-inner { flex-direction: column; gap: 22px; }
+  .footer-links { gap: 28px; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  .brand-tag { display: none; }
+  .hero { padding: 40px 0 36px; }
+  .article-cover { border-radius: 10px; }
+  .article-cover img { max-height: 320px; }
 }
