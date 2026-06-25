@@ -29,7 +29,12 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(255, 122, 77, 0.18); }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(255, 122, 77, 0.18);
+  scroll-padding-top: 80px; /* keep anchored sections clear of the sticky header */
+}
 
 body {
   margin: 0;
@@ -40,6 +45,8 @@ body {
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
+  overscroll-behavior-y: none;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -228,30 +235,40 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.18
 
 /* ---------- Responsive ---------- */
 @media (max-width: 760px) {
-  body { font-size: 17px; }
-  .nav { height: 60px; }
+  body { font-size: 18px; line-height: 1.7; }
+  .nav { height: 64px; }
+  .nav-toggle { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; margin-right: -8px; }
+  .nav-toggle svg { width: 28px; height: 28px; }
   .nav-links {
-    position: fixed; inset: 60px 0 auto 0; flex-direction: column; align-items: stretch;
-    background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 22px 22px;
-    gap: 4px; transform: translateY(-130%); transition: transform 0.32s var(--ease); box-shadow: var(--shadow-md);
+    position: fixed; inset: 64px 0 auto 0; flex-direction: column; align-items: stretch;
+    background: var(--surface); border-bottom: 1px solid var(--line); padding: 10px 18px 20px;
+    gap: 2px; transform: translateY(-130%); transition: transform 0.32s var(--ease); box-shadow: var(--shadow-md);
   }
   .nav-links.open { transform: none; }
-  .nav-links a { padding: 13px 4px; font-size: 1.05rem; }
+  .nav-links a { display: flex; align-items: center; min-height: 52px; padding: 8px 8px; font-size: 1.12rem; border-radius: 10px; }
+  .nav-links a:hover, .nav-links a:active { background: var(--bg-soft); }
   .nav-links a::after { display: none; }
-  .nav-cta { text-align: center; margin-top: 6px; }
-  .nav-toggle { display: inline-flex; }
+  .nav-cta { justify-content: center; margin-top: 8px; min-height: 52px; }
 
   /* Hero: tighter spacing, blob kept clear of the heading */
   .hero { padding: 48px 0 40px; }
   .hero h1 { margin-bottom: 14px; }
   .hero p { font-size: 1.08rem; }
   .hero-blob { width: 220px; height: 220px; right: -64px; top: -40px; opacity: 0.3; }
+  .hero h1 { font-size: clamp(2.4rem, 9vw, 3rem); }
   .hero .pill-row { flex-direction: column; align-items: stretch; }
   .hero .pill-row .btn { width: 100%; justify-content: center; }
 
+  /* Comfortable touch targets everywhere */
+  .btn { min-height: 52px; padding: 15px 24px; font-size: 1.05rem; }
   .section { padding: 40px 0; }
-  .section-head h2 { font-size: 1.55rem; }
+  .section-head h2 { font-size: 1.6rem; }
   .post-grid { gap: 20px; }
+  .card h3 { font-size: 1.4rem; }
+  .card .excerpt { font-size: 1.02rem; }
+  .card-tags { gap: 9px; }
+  .tag { font-size: 0.82rem; padding: 7px 14px; }
+  .card-body { padding: 22px 20px 24px; gap: 12px; }
 
   .article-hero { padding: 38px 0 8px; }
   .article-hero h1 { max-width: none; }
@@ -263,10 +280,17 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.18
   .article-body figure.img-center { float: none; width: 100% !important; margin: 1.4em 0; }
   .article-body blockquote { font-size: 1.18rem; }
 
+  .article-body { line-height: 1.78; }
+  .article-body h2 { font-size: 1.55rem; }
+
   .post-nav { flex-direction: column; gap: 14px; }
-  .post-nav a, .post-nav a.next { max-width: 100%; text-align: left; margin: 0; }
+  .post-nav a, .post-nav a.next {
+    max-width: 100%; text-align: left; margin: 0;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface);
+  }
   .footer-inner { flex-direction: column; gap: 22px; }
-  .footer-links { gap: 28px; }
+  .footer-links { gap: 36px; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
