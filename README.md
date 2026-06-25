@@ -36,7 +36,7 @@ site and deploys it to GitHub Pages — usually live in about a minute.
 ## One-time setup
 
 ### 1. Push this repo to GitHub
-The repo is expected at **`githintz/myblog`** (configured in `content/site.json`).
+The repo is expected at **`githintz/MyBlog`** (configured in `content/site.json`).
 If you use a different name, update `repo`, `url`, and `basePath` in that file.
 
 ### 2. Turn on GitHub Pages
@@ -44,7 +44,7 @@ Repo → **Settings → Pages → Build and deployment → Source: GitHub Action
 After the first push to `main`, your site goes live at:
 
 ```
-https://githintz.github.io/myblog/
+https://githintz.github.io/MyBlog/
 ```
 
 > Using a custom domain or a `username.github.io` repo? Set `url` to your domain and
@@ -56,7 +56,7 @@ https://githintz.github.io/myblog/
 3. **Permissions → Repository → Contents → Read and write**
 4. Generate and copy the token.
 
-Open **`https://githintz.github.io/myblog/admin/`**, paste the token, and you’re in.
+Open **`https://githintz.github.io/MyBlog/admin/`**, paste the token, and you’re in.
 The token is stored only in your browser. To “log out” everywhere, delete the token on GitHub.
 
 ### 4. (Optional) Turn on traffic analytics
@@ -68,7 +68,7 @@ The token is stored only in your browser. To “log out” everywhere, delete th
 
 ### 5. (Optional but recommended) Get found on Google faster
 Add your site to [Google Search Console](https://search.google.com/search-console) and
-submit `https://githintz.github.io/myblog/sitemap.xml`.
+submit `https://githintz.github.io/MyBlog/sitemap.xml`.
 
 ---
 

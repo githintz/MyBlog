@@ -4,10 +4,10 @@
   "description": "A photography journal where I share what I'm learning behind the lens — light, composition, gear experiments, and the stories behind my favourite frames.",
   "author": "Githintz",
   "email": "githintz@gmail.com",
-  "url": "https://githintz.github.io/myblog",
-  "basePath": "/myblog",
+  "url": "https://githintz.github.io/MyBlog",
+  "basePath": "/MyBlog",
   "language": "en",
-  "repo": "githintz/myblog",
+  "repo": "githintz/MyBlog",
   "branch": "main",
   "postsPerPage": 6,
   "social": {
